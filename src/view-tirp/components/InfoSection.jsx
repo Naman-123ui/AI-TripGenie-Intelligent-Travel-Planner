@@ -15,11 +15,13 @@ function InfoSection({ trip }) {
         const data = {
             textQuery: trip?.userSelection?.location
         }
-        const result = await GetPlaceDetails(data).then(resp => {
-            console.log(resp.data.places[0].photos[5].name)
+        try {
+            const resp = await GetPlaceDetails(data);
             const PhotoUrl = PHOTO_REF_URL.replace('{NAME}', resp.data.places[0].photos[5].name)
             setPhotoUrl(PhotoUrl)
-        })
+        } catch (err) {
+            console.error('Error fetching place photo:', err);
+        }
     }
     
     return (

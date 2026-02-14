@@ -21,8 +21,8 @@ function Header() {
   const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
-    console.log(user)
-  })
+    // User state initialized from localStorage
+  }, [])
   //  const navigate =  useNavigate();
 
   const login = useGoogleLogin({

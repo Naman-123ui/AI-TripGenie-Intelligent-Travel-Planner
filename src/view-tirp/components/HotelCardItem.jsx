@@ -13,11 +13,13 @@ function HotelCardItem({ hotel }) {
         const data = {
             textQuery: hotel?.name
         }
-        const result = await GetPlaceDetails(data).then(resp => {
-            console.log(resp.data.places[0].photos[3].name)
+        try {
+            const resp = await GetPlaceDetails(data);
             const PhotoUrl = PHOTO_REF_URL.replace('{NAME}', resp.data.places[0].photos[3].name)
             setPhotoUrl(PhotoUrl)
-        })
+        } catch (err) {
+            console.error('Error fetching hotel photo:', err);
+        }
     }
 
     return (

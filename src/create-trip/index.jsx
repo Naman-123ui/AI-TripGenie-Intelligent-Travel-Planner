@@ -35,7 +35,6 @@ const CreateTrip = () => {
     const onPlaceChanged = () => {
         if (autocompleteRef.current !== null) {
             const place = autocompleteRef.current.getPlace();
-            console.log('Place details:', place);
            setPlace(place);
            if (place) {
       setFormData(prev => ({
@@ -49,7 +48,7 @@ const CreateTrip = () => {
     }
             
         } else {
-            console.log('Autocomplete not loaded');
+            toast.error('Location autocomplete not loaded');
         }
     };
     const handleInputChange = (name, value) => {
@@ -59,11 +58,9 @@ const CreateTrip = () => {
             [name]: value
         })
     }
-    console.log(place);
-
+    
     useEffect(() => {
-        console.log(formData);
-        
+        // Form data state initialized
     }, [formData])
 
     const OnGenerateTrip= async ()=>{
@@ -85,7 +82,6 @@ const CreateTrip = () => {
      .replace('{totalDays}', formData?.noOfDays)
 
      const result = await chatSession.sendMessage(FINAL_PROMPT);
-        console.log(result.response.text());
          SaveAiTrip(result?.response?.text())
     }
  
@@ -113,7 +109,7 @@ const SaveAiTrip = async (TripData) => {
   }
     const login = useGoogleLogin({
     onSuccess: (res) => GetUserProfile(res),
-    onError: (error) => console.log(error)
+    onError: (error) => console.error('Google login error:', error)
   })
 
   const GetUserProfile = (tokenInfo) => {
@@ -123,7 +119,6 @@ const SaveAiTrip = async (TripData) => {
         Accept: 'application/json',
       },
     }).then((resp) => {
-      console.log(resp);
       localStorage.setItem('user', JSON.stringify(resp.data));
       setOpenDialog(false);
        OnGenerateTrip();
