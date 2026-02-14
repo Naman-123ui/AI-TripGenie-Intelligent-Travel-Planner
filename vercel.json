@@ -1,10 +1,9 @@
 {
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
-    "rewrites": [
-      {
-        "source": "/:path((?!.*\\.).*)",
-        "destination": "/index.html"
-      }
-    ]
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "env": {
+    "VITE_GOOGLE_GEMINI_AI_API_KEY": "@google_gemini_api",
+    "VITE_GOOGLE_PLACE_API_KEY": "@google_place_api",
+    "VITE_GOOGLE_AUTH_CLIENT_ID": "@google_auth_client_id"
   }
+}
