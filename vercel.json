@@ -2,10 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm ci",
-  "dev": {
-    "command": "npm run dev",
-    "port": 5173
-  },
   "env": {
     "VITE_GOOGLE_GEMINI_AI_API_KEY": "@vite_google_gemini_ai_api_key",
     "VITE_GOOGLE_PLACE_API_KEY": "@vite_google_place_api_key",
