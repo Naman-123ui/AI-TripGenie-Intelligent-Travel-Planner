@@ -14,11 +14,13 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    commonjsOptions: {
+      include: [/node_modules/]
+    },
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'firebase-vendor': ['firebase'],
           'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-popover', 'sonner'],
         }
       }
