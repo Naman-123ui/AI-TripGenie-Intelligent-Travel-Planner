@@ -23,11 +23,12 @@ function Header() {
   useEffect(() => {
     // User state initialized from localStorage
   }, [])
-  //  const navigate =  useNavigate();
 
   const login = useGoogleLogin({
     onSuccess: (res) => GetUserProfile(res),
-    onError: (error) => console.log(error)
+    onError: (error) => {
+      console.error('Google login error:', error)
+    }
   })
 
   const GetUserProfile = (tokenInfo) => {
@@ -37,7 +38,6 @@ function Header() {
         Accept: 'application/json',
       },
     }).then((resp) => {
-      console.log(resp);
       localStorage.setItem('user', JSON.stringify(resp.data));
       setOpenDialog(false);
       window.location.reload();
@@ -75,7 +75,7 @@ function Header() {
           </div> : <Button onClick={()=>setOpenDialog(true)}>Sign In</Button>}
       </div>
 
-      <Dialog open={openDialog}>
+      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogDescription>

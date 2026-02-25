@@ -70,7 +70,7 @@ const CreateTrip = () => {
       return;
     }
 
-        if (formData?.noOfDAys > 5 || (!formData?.location || !formData?.budget || !formData.traveler)) {
+        if (formData?.noOfDays > 5 || (!formData?.location || !formData?.budget || !formData.traveler)) {
       toast('Please fill all the details')
       return;
     }
@@ -79,20 +79,11 @@ const CreateTrip = () => {
     .replace('{totalDays}',formData?.noOfDays)
     .replace('{traveler}',formData?.traveler)
     .replace('{budget}',formData?.budget)
-     .replace('{totalDays}', formData?.noOfDays)
 
      const result = await chatSession.sendMessage(FINAL_PROMPT);
          SaveAiTrip(result?.response?.text())
     }
  
-//      const SaveAiTrip = async(TripData)=>{
-
-//         const docRef = await addDoc(collection(db, "users"), {
-//     first: "Ada",
-//     last: "Lovelace",
-//     born: 1815
-//   });
-//      }
 const SaveAiTrip = async (TripData) => {
     setLoading(true)
     const user = JSON.parse(localStorage.getItem('user'))
@@ -196,13 +187,11 @@ const SaveAiTrip = async (TripData) => {
             </div>
 
              <div className='my-10 justify-end flex'>
-       <div className='my-10 justify-end flex'>
         <Button disabled={loading} onClick={OnGenerateTrip}>
           {loading ? <AiOutlineLoading3Quarters className='h-7 w-7 animate-spin' /> : 'Generate Trip'}
         </Button>
       </div>
-      </div>
-        <Dialog open={openDialog}>
+        <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent>
           <DialogHeader>
           <DialogTitle></DialogTitle>

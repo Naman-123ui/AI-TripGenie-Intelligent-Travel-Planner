@@ -1,23 +1,18 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore"
-// import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDdzpkMAcjMg1-SFFMPIiZ7_Om9-ML1qFY",
-  authDomain: "aitripplanner-abda6.firebaseapp.com",
-  projectId: "aitripplanner-abda6",
-  storageBucket: "aitripplanner-abda6.firebasestorage.app",
-  messagingSenderId: "640865070082",
-  appId: "1:640865070082:web:b0620bde59d8ebbc418b1b",
-  measurementId: "G-LVKYLPDCR9"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
  export const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 export  const db = getFirestore(app);
